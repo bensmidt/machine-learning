@@ -1,13 +1,13 @@
 # Important Concepts
 ## Linear Classifiers
-    - Softmax
-    - Support Vector Machines 
-    - L2 Regularization
+1. Softmax
+1. Support Vector Machines 
+1. L2 Regularization
 ## Optimization
-    - SGD
-    - Momentum
-    - AdaGrad
-    - Adam
+1. SGD
+1. Momentum
+1. AdaGrad
+1. Adam
 ## Neural Networks
     - Feature Transforms
     - Fully Connected Networks
