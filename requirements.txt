@@ -1,0 +1,4 @@
+# install torch, torchvision, torchaudio with
+# https://developer.apple.com/metal/pytorch/
+# to use GPUs on Mac (Apple Silicon M1/M2)
+ipykernel
