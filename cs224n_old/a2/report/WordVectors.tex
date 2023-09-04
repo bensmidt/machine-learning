@@ -1,0 +1,924 @@
+\documentclass[12pt]{article}
+\usepackage{lingmacros}
+\usepackage{tree-dvips}
+% hyper links
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{bm}
+% Formatting quotes properly
+\usepackage[english]{babel}
+\usepackage[autostyle, english = american]{csquotes}
+\MakeOuterQuote{"}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\usepackage[left=2cm,top=2cm,right=3cm,bottom=2.5cm,nohead,nofoot]{geometry}
+
+\begin{document}
+
+\noindent Author: Benjamin Smidt
+
+\noindent Created: October 3rd, 2022
+
+\noindent Last Updated: January 17th, 2023
+\begin{center}
+\section*{CS 224N A2: Word Vectors}
+\end{center}
+
+\paragraph{} \emph{Note to the reader}. This is my work for assignment 2 of Stanford's course
+\href{https://web.stanford.edu/class/cs224n/}{CS 224N: Natural Language Processing with Deep Learning}. 
+You can find the Winter 2021 lectures on YouTube \href{https://www.youtube.com/playlist?list=PLoROMvodv4rOSH4v6133s9LFPRHjEmbmJ}{here}.
+This document is meant to be a reference, explanation, and resource for assignment 2. 
+If there's a typo or a error, please email me at benjamin.smidt@utexas.edu so I can fix it. 
+Finally, here is a link to my \href{https://github.com/bensmidt/CS224N-DL-NLP}{GitHub repo}. 
+
+\tableofcontents{}
+
+\newpage
+
+\section{Written Understanding}
+
+%% PROBLEM 1-A %%
+\subsection{Problem A}
+\underline{Instructions}
+~\\
+Prove that the naive-softmax loss is the same as the cross-entropy 
+loss between $\bm y$ and $\hat{\bm y}$, i.e. (note that $\bm y, \hat{\bm y}$ 
+are vectors and $\hat{\bm y}_o$ is a scalar).
+~\\
+~\\
+\underline{Solution}
+~\\
+Remember, we're using the skip-gram model (see lecture 1 notes, very helpful for definitions 
+and general understanding). To start with, our naive-softmax loss is defined as
+\begin{equation}
+    \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U) = -\log P(O=o| C=c)
+\end{equation}
+where 
+\begin{equation}
+P(O=o \mid C=c) = \frac{\exp(\bm u_{o}^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+\end{equation}
+Let's define our variables. Recall that $\bm v_c$ is the vector embedding 
+for our given center word ($\bm v_c = Vx$ where $V \in \mathbb{R}^{n \times \vert Vocab \vert}$ and 
+$x$ is the one hot vector for the center word where $x \in \mathbb{R}^{\vert Vocab \vert}$). 
+$ \hat{\bm y}$ is our score vector and 
+$\hat{\bm y_w}$ is the scalar at index $w$ (denoting a given word) within $ \hat{\bm y}$. 
+
+\begin{equation}
+    \hat{\bm y} = 
+    \frac{\exp(\bm U \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)} 
+    \; \; \; \text{and} \; \; \; 
+    \hat{\bm y_w} = 
+    \frac{\exp(\bm u_w^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+\end{equation}
+Note that $ \hat{\bm y} \in \mathbb{R}^{\vert Vocab \vert}$  (it is a vector of length equal 
+to the vocabulary size). Additionally, it's numerator 
+is of the same dimension as $ \hat{\bm y}$ but its denominator is a scalar. You can interpret the expression 
+to mean that each index of vector $\exp(\bm U \bm v_c)$ is divided by 
+$\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)$ to yield $ \hat{\bm y}$ (in fact this 
+is exactly how you might think of programming something like this). Thus, each index $w$
+in the vector $\hat{\bm y}$ (scalar $\hat{\bm y_w}$) can be interpeted as the probability that the corresponding word (using the 
+the index $w$ and its one hot vector) is a context (or "outside") word given the center word (by 
+eqn. 2)
+~\\
+~\\
+$\bm y$ is defined as the one hot vector of the true outside word such that index $o$ in 
+$\bm y$ is $1$ and all other indices are $0$ for this particular problem. Then
+
+\begin{equation} 
+    -\sum_{w \in \text{Vocab}} \bm y_w \log(\hat{\bm y}_w) = 
+    \bm -\bm y_1 \log(\hat{\bm y}_1) + ... + -\bm y_o \log(\hat{\bm y}_o) + ... + -\bm y_w \log(\hat{\bm y}_w)
+\end{equation}    
+\begin{equation} 
+    -\sum_{w \in \text{Vocab}} \bm y_w \log(\hat{\bm y}_w) = 
+    \bm - (0)\log(\hat{\bm y}_1) + ... + -\bm (1) \log(\hat{\bm y}_o) + ... + - (0) \log(\hat{\bm y}_w)
+\end{equation}    
+\begin{equation} 
+    -\sum_{w \in \text{Vocab}} \bm y_w \log(\hat{\bm y}_w) = 
+    -\log(\hat{\bm y}_o)
+\end{equation}    
+Remember that $\bm y_o$ represents the word at index $o$, who's one hot vector is a 
+1 at index $o$, indicating that it is a context word given $\bm v_c$. That is,
+\begin{equation}
+\hat{\bm y_o} = P(O=o \mid C=c) = \frac{\exp(\bm u_{o}^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)} 
+\end{equation}
+Hence, by substitution
+\begin{equation} 
+    -\sum_{w \in \text{Vocab}} \bm y_w \log(\hat{\bm y}_w) = 
+    - \log(\frac{\exp(\bm u_o^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)})
+\end{equation}    
+\begin{equation} 
+    -\sum_{w \in \text{Vocab}} \bm y_w \log(\hat{\bm y}_w) = 
+    - \log P(O=o| C=c)
+\end{equation}   
+\begin{equation} 
+    -\sum_{w \in \text{Vocab}} \bm y_w \log(\hat{\bm y}_w) = 
+    \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)
+\end{equation}     
+I know the instructions said one line but I was going for clarity here. Obviously, I could not define
+the variables (leave it to you to figure out what they mean) and just write some 
+one liner that connects the dots. However, I wanted to make this as clear to understand as possible. 
+Hopefully this leaves no room for ambiguity. 
+
+%% PROBLEM 1-B %%
+\subsection{Problem B}
+\underline{Instructions}
+~\\
+Compute the partial derivative of $\bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)$ with respect to $\bm v_c$. 
+Please write your answer in terms of $\bm y$, $\hat{\bm y}$, and $\bm U$. Additionally, answer the following 
+two questions with one sentence each: (1) When is the gradient zero? (2) Why does subtracting this gradient, 
+in the general case when it is nonzero, make $\bm v_c$ a more desirable vector (namely, a vector closer to 
+outside word vectors in its window)?
+~\\
+~\\
+\underline{Solution}
+~\\
+We start with our definition of $\bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)$.
+\begin{equation}
+    \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U) = 
+    -log \frac{\exp(\bm u_{o}^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    \frac{\partial}{\partial \bm v_c} 
+    - log \frac{\exp(\bm u_{o}^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    \frac{\partial}{\partial \bm v_c} 
+    - \bm u_{o}^\top \bm v_c +
+    \frac{\partial}{\partial \bm v_c} 
+    \; log \sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)
+\end{equation}
+Everything up to this point should be easy to follow if you remember algebra (although see the 
+first lecture where he goes through these exact steps in detail if you are confused). Note that 
+in the coming step, I 
+do a change of variables to ensure I know what I'm taking my partial derivative with respect to.
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    - \bm u_{o}^\top +
+    \frac{1}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+    \frac{\partial}{\partial \bm v_c} 
+    {\sum_{j \in \text{Vocab}} \exp(\bm u_{j}^\top \bm v_c)}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    - \bm u_{o}^\top +
+    \frac{\sum_{j \in \text{Vocab}} \bm u_{j}^\top \exp(\bm u_{j}^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+\end{equation}
+Recall that 
+\begin{equation}
+    \hat{\bm y_w} = 
+    \frac{\exp(\bm u_w^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+\end{equation}
+By substitution, (I change back the $j$ to $w$ since there's only one sum now)
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    - \bm u_{o}^\top + 
+    \sum_{j \in \text{Vocab}} \bm u_{w}^{\top} \hat{\bm y_w}
+\end{equation}
+Note that the expression to the right of the addition (above) is each index $w$ of matrix 
+$U \in \mathbb{R}^{\vert Vocab \vert \times n}$
+(vector $\bm u_w$) being weighted by each index $w$ of vector 
+$\hat{\bm y}$ (scalar $\hat{\bm y_w}$). 
+Rewriting this using matrices (remember $\bm y$ is one hot where $\bm y_o =1$), we find
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    - \bm U^\top \bm y + \bm U^\top \bm {\hat y_w}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    \bm U^\top (\bm {\hat y} - \bm y)
+\end{equation}
+You can verify the shape of this vector is the same shape as $\bm v_c \in \mathbb{R}^n$. 
+~\\
+~\\
+1. The gradient is zero when $\bm {\hat y} = \bm y$. Obviously if our predicted and correct vectors 
+are equivalent then our accuracy is perfect and there's no update that could improve the loss.
+~\\
+2. Because we're doing gradient descent (as opposed to ascent), the update adds some portion 
+of $\bm U^\top \bm y$ and subtracts some portion of $\bm U^\top \bm {\hat y}$. This makes 
+intuitive sense because adding the correct vector $\bm u_o^\top$ makes it more like that vector (which is what we want) and 
+subtracting by $\bm U^\top \bm {\hat y}$, the weighted average of our incorrect vectors that are 
+producing the loss, makes it less like those vectors (again, what we want). 
+
+%% PROBLEM 1-C %%
+\subsection{Problem C}
+\underline{Instructions}
+~\\
+Compute the partial derivatives of $\bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)$ with respect to 
+each of the `outside' word vectors, $\bm u_w$'s. There will be two cases: when $w=o$, the true 
+`outside' word vector, and $w \neq o$, for all other words. Please write your answer in terms of 
+$\bm y$, $\hat{\bm y}$, and $\bm v_c$. In this subpart, you may use specific elements within these 
+terms as well (such as $\bm y_1$, $\bm y_2$, $\dots$). Note that $\bm u_w$ is a vector while 
+$\bm y_1, \bm y_2, \dots$ are scalars.
+~\\
+~\\
+\underline{Solution}
+~\\
+\textbf{Case 1: $\bm u_w = \bm u_o$}
+~\\
+We start with the case that $\bm u_w = \bm u_o$. 
+\begin{equation}
+    \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U) = 
+    -log \frac{\exp(\bm u_{o}^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_o} = 
+    \frac{\partial}{\partial \bm u_o} 
+    - log \frac{\exp(\bm u_{o}^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_o} = 
+    \frac{\partial}{\partial \bm u_o} 
+    - \bm u_o^\top \bm v_c +
+    \frac{\partial}{\partial \bm u_o} 
+    \; log \sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_o} = 
+    - \bm v_c +
+    \frac{1}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+    \frac{\partial}{\partial \bm u_o} 
+    \sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_o} = 
+    - \bm v_c +
+    \frac{\bm v_c \exp(\bm u_o^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_o} = 
+    - \bm v_c + \bm v_c (\bm {\hat y_o})
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_o} = 
+    \bm v_c ( \bm {\hat y_o} - 1 )
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_o} = 
+    \bm v_c ( \bm {\hat y^\top} \bm y - 1 )
+\end{equation}
+Revisit eqn. 3 if going from step 24 to step 25 isn't clicking. We choose to represent 
+$\bm {\hat y_o}$ as $\bm {\hat y^\top}$ from the direction's constraints of how to 
+represent the equation. I wasn't sure if eqn. 26 was good enough or it was meant to be 
+more generalized. 
+~\\
+~\\
+\textbf{Case 2: $\bm u_w \ne \bm u_o$}
+~\\
+Now we move onto the case that $\bm u_w \ne \bm u_o$. That is, the gradient with respect to 
+any vector $\bm u_w$ that isn't $\bm u_o$. I'll use the notation $\bm u_j$ to indicate the 
+particular $\bm u_w$ we want to find the gradient with respect to and (hopefully) 
+prevent any confusion.
+\begin{equation}
+    \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U) = 
+    -log \frac{\exp(\bm u_{o}^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_j} = 
+    \frac{\partial}{\partial \bm u_j} 
+    - log \frac{\exp(\bm u_{o}^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_j} = 
+    \frac{\partial}{\partial \bm u_j} 
+    - \bm u_o^\top \bm v_c +
+    \frac{\partial}{\partial \bm u_j} 
+    \; log \sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_j} = 
+    \frac{1}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+    \frac{\partial}{\partial \bm u_j} \sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)
+\end{equation}
+\begin{equation}= 
+    \frac{1}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+    \frac{\partial}{\partial \bm u_j} 
+    (\exp(\bm u_{1}^\top \bm v_c) + ... + \exp(\bm u_{j}^\top \bm v_c) 
+    + ... + \exp(\bm u_{\vert Vocab \vert}^\top \bm v_c) )
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_j} = 
+    \frac{\bm v_c \exp(\bm u_{j}^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_j} = 
+    \bm v_c \; \bm {\hat y_j}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_j} = 
+    \bm v_c ( \bm {\hat y_j} - \bm y_j )
+\end{equation}
+Note that $\bm {\hat y_j}$ is a scalar and $\bm y_j$ is 0 since the word $j$ is defined 
+as not being an outside word. 
+
+%% PROBLEM 1-D %%
+\subsection{Problem D}
+\underline{Instructions}
+~\\
+Write down the partial derivative of $\bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)$ 
+with respect to $\bm U$. Please break down your answer in terms of 
+$\frac{\partial \bm J(\bm v_c, o, \bm U)}{\partial \bm u_1}$, 
+$\frac{\partial \bm J(\bm v_c, o, \bm U)}{\partial \bm u_2}$, 
+$\cdots$, $\frac{\partial \bm J(\bm v_c, o, \bm U)}{\partial \bm u_{|\text{Vocab}|}}$. 
+The solution should be one or two lines long.
+~\\
+~\\
+\underline{Solution}
+~\\
+We already know 
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_j} = 
+    \bm v_c ( \bm {\hat y_j} - \bm y_j ) \; \; \text{and} \; \; 
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_o} = 
+    \bm v_c ( \bm {\hat y_0} - 1 )
+\end{equation}
+Since $\bm y$ is a one hot vector, then
+With that we can write
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm U} = 
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_1}, ..., 
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm u_V}
+\end{equation}
+where $V$ is the index of the last word vector in $\bm U$. It follows then that 
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm U} = 
+    \bm v_c \; (\bm {\hat y_1} - \bm y_1), 
+    \bm v_c \; (\bm {\hat y_2} - \bm y_2), 
+    ..., 
+    \bm v_c \; (\bm {\hat y_o} - 1),  
+    ..., 
+    \bm v_c \; (\bm {\hat y_{\vert V \vert}} - \bm y_{\vert V \vert})
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm U} = 
+    \bm v_c ( \bm {\hat y} - \bm y )^\top
+\end{equation}
+Our current equation suggests $\bm U \in \mathbb{R}^{n \times \vert Vocab \vert}$. 
+However, $\bm U \in \mathbb{R}^{\vert Vocab \vert \times n}$, the transpose of what 
+we currently have. This comes from the fact that $\bm u_w$ is thought 
+of as a column vector when alone (or at least that's how I interpret it) but it is 
+represented as a row vector in $\bm U$. So, we fix it with the following to achieve
+the correct shape. 
+\begin{equation}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm U} = 
+     ( \bm {\hat y} - \bm y ) \bm v_c^\top
+\end{equation}
+
+%% PROBLEM 1-E %%
+\subsection{Problem E}
+\underline{Instructions}
+~\\
+The ReLU (Rectified Linear Unit) activation function is given by the Equation:
+\begin{equation}
+    \label{ReLU}
+    f(x) = \max(0, x)
+\end{equation}
+Please compute the derivative of $f(x)$ with respect to $x$, where $x$ is a scalar. 
+You may ignore the case that the derivative is not defined at 0.
+~\\
+~\\
+\underline{Solution}
+\begin{equation}
+    f(x) = 
+    \begin{cases}
+        0 \; \; \text{if} \; \; x < 0 \\
+        x \; \; \text{if} \; \; x > 0
+    \end{cases}
+\end{equation}
+\begin{equation}
+    f'(x) = 
+    \begin{cases}
+        0 \; \; \text{if} \; \; x < 0 \\
+        1 \; \; \text{if} \; \; x > 0
+    \end{cases}
+\end{equation}
+
+%% PROBLEM 1-F %%
+\subsection{Problem F}
+\underline{Instructions}
+~\\
+The sigmoid function is given by:
+\begin{equation}
+    \label{Sigmoid Function}
+    \sigma (x) = \frac{1}{1 + e^{-x}} = \frac{e^{x}}{e^{x} + 1}
+\end{equation}
+Please compute the derivative of $\sigma(x)$ with respect to $x$,
+where $x$ is a scalar. Hint: you may want to write your answer in terms of $\sigma(x)$.
+~\\
+~\\
+\underline{Solution}
+~\\
+
+\begin{equation}
+    \sigma (x) = \frac{1}{1 + e^{-x}} = \frac{e^{x}}{e^{x} + 1}
+    \; \; \; \emph{Multiply by $\frac{e^x}{e^x}$}
+\end{equation}
+\begin{equation}
+    \sigma' (x) = \frac{e^{x} (e^{x}+1) - e^{x}e^{x}}{(e^{x} + 1)^2}
+    \; \; \; \emph{Product Rule}
+\end{equation}
+\begin{equation}
+    \sigma' (x) = \frac{e^{2x} + e^{x} - e^{2x}}{(e^{x} + 1)^2}
+\end{equation}
+\begin{equation}
+    \sigma' (x) = \frac{e^{x}}{(e^{x} + 1)^2}
+\end{equation}
+\begin{equation}
+    \sigma' (x) = \frac{e^{x}}{e^{x} + 1} \; \frac{1}{e^{x} + 1}
+\end{equation}
+\begin{equation}
+    \sigma' (x) = \frac{1}{1 + e^{-x}} \; \frac{1}{e^{x} + 1}
+    \; \; \; \emph{Multiplied left by $\frac{\frac{1}{e^x}}{\frac{1}{e^x}}$}
+\end{equation}
+\begin{equation}
+    \sigma' (x) = \sigma(x) \; \frac{1}{e^{x} + 1}
+\end{equation}
+\begin{equation}
+    \sigma' (x) = \sigma(x) \; \frac{e^{x} + 1 - e^{x}}{e^{x} + 1}
+\end{equation}
+\begin{equation}
+    \sigma' (x) = \sigma(x) \; (\frac{e^x + 1}{e^x + 1} - \frac{e^{x}}{e^{x} + 1})
+\end{equation}
+\begin{equation}
+    \sigma' (x) = \sigma(x) \; (1 - \frac{1}{1 + e^{-x}})
+\end{equation}
+\begin{equation}
+    \sigma' (x) = \sigma(x) \; (1 - \sigma(x))
+\end{equation}
+
+%% PROBLEM 1-G %%
+\subsection{Problem G}
+\underline{Instructions}
+~\\
+Now we shall consider the Negative Sampling loss, which is an alternative to the Naive Softmax loss.  
+Assume that $K$ negative samples (words) are drawn from the vocabulary. For simplicity of notation we 
+shall refer to them as $w_1, w_2, \dots, w_K$, and their outside vectors as 
+$\bm u_{w_1}, \bm u_{w_2}, \dots, \bm u_{w_K}$. For this question, assume that the $K$ negative samples 
+are distinct. In other words, $i\neq j$ implies $w_i\neq w_j$ for $i,j\in\{1,\dots,K\}$.
+Note that $o\notin\{w_1, \dots, w_K\}$. 
+For a center word $c$ and an outside word $o$, the negative sampling loss function is given by:
+
+\begin{equation}
+\bm J_{\text{neg-sample}}(\bm v_c, o, \bm U) = -\log(\sigma(\bm u_o^\top \bm v_c)) - \sum_{s=1}^K \log(\sigma(-\bm u_{w_s}^\top \bm v_c))
+\end{equation}
+for a sample $w_1, \ldots w_K$, where $\sigma(\cdot)$ is the sigmoid function.
+~\\
+
+\subsubsection{(i)}
+\underline{Instructions}
+~\\
+Please repeat parts (b) and (c), computing the partial derivatives of $\bm J_{\text{neg-sample}}$ 
+with respect to $\bm v_c$, with respect to $\bm u_o$, and with respect to the $s^{th}$ negative sample 
+$\bm u_{w_s}$. Please write your answers in terms of the vectors $\bm v_c$, $\bm u_o$, and $\bm u_{w_s}$, 
+where $s \in [1, K]$. \textbf{Note:} you should be able to use your solution to part (f) to help compute the necessary gradients here.
+~\\
+~\\
+\underline{{Part B Recap:}}
+~\\
+\emph{(b) Compute the partial derivative of $\bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)$ with respect to $\bm v_c$. 
+Please write your answer in terms of $\bm y$, $\hat{\bm y}$, and $\bm U$. Additionally, answer the following 
+two questions with one sentence each: (1) When is the gradient zero? (2) Why does subtracting this gradient, 
+in the general case when it is nonzero, make $\bm v_c$ a more desirable vector (namely, a vector closer to 
+outside word vectors in its window)?}
+~\\
+~\\
+\underline{Solution}
+\begin{equation}
+    \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U) = -\log(\sigma(\bm u_o^\top \bm v_c)) - \sum_{s=1}^K \log(\sigma(-\bm u_{w_s}^\top \bm v_c))
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    \frac{\partial}{\partial \bm v_c}
+    -\log(\sigma(\bm u_o^\top \bm v_c)) - 
+    \frac{\partial}{\partial \bm v_c}
+    \sum_{s=1}^K \log(\sigma(-\bm u_{w_s}^\top \bm v_c))
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    - \frac{1}{\sigma(\bm u_o^\top \bm v_c)} 
+    \frac{\partial}{\partial \bm v_c}
+    \sigma(\bm u_o^\top \bm v_c) - 
+    \sum_{s=1}^K 
+    \frac{\partial}{\partial \bm v_c}
+    \log(\sigma(-\bm u_{w_s}^\top \bm v_c))
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    - \frac{1}{\sigma(\bm u_o^\top \bm v_c)} 
+    \frac{\partial}{\partial \bm v_c}
+    \sigma(\bm u_o^\top \bm v_c) - 
+    \sum_{s=1}^K \frac{1}{(\sigma(-\bm u_{w_s}^\top \bm v_c))}
+    \frac{\partial}{\partial \bm v_c}
+    (\sigma(-\bm u_{w_s}^\top \bm v_c))
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    - \frac{\sigma(\bm u_o^\top \bm v_c)}{\sigma(\bm u_o^\top \bm v_c)} 
+    [1 - \sigma(\bm u_o^\top \bm v_c)] \bm u_o -
+    \sum_{s=1}^K \frac{\sigma(-\bm u_{w_s}^\top \bm v_c)}{(\sigma(-\bm u_{w_s}^\top \bm v_c))}
+    [1 - \sigma(-\bm u_{w_s}^\top \bm v_c)]
+    (- \bm u_{w_s})
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    [\sigma(\bm u_o^\top \bm v_c) - 1] \bm u_o +
+    \sum_{s=1}^K [1 - \sigma(-\bm u_{w_s}^\top \bm v_c)]
+    \bm u_{w_s}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    [\sigma(\bm u_o^\top \bm v_c) - 1] \bm u_o +
+    \sum_{s=1}^K [1 - \frac{1}{1 + \exp(-(-\bm u_{w_s}^\top \bm v_c))}]
+    \bm u_{w_s}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    [\sigma(\bm u_o^\top \bm v_c) - 1] \bm u_o +
+    \sum_{s=1}^K [\frac{1 + \exp(\bm u_{w_s}^\top \bm v_c)}{1 + \exp(\bm u_{w_s}^\top \bm v_c)}
+    - \frac{1}{1 + \exp(\bm u_{w_s}^\top \bm v_c)}]
+    \bm u_{w_s}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    [\sigma(\bm u_o^\top \bm v_c) - 1] \bm u_o +
+    \sum_{s=1}^K [\frac{\exp(\bm u_{w_s}^\top \bm v_c)}{1 + \exp(\bm u_{w_s}^\top \bm v_c)}]
+    \bm u_{w_s}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    [\sigma(\bm u_o^\top \bm v_c) - 1] \bm u_o +
+    \sum_{s=1}^K [\frac{1}{1 + \exp(-\bm u_{w_s}^\top \bm v_c)}]
+    \bm u_{w_s}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    [\sigma(\bm u_o^\top \bm v_c) - 1] \bm u_o +
+    \sum_{s=1}^K \sigma (\bm u_{w_s}^\top \bm v_c) \bm u_{w_s}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    -[1 - \sigma(\bm u_o^\top \bm v_c)] \bm u_o +
+    \sum_{s=1}^K \sigma (\bm u_{w_s}^\top \bm v_c) \bm u_{w_s}
+\end{equation}
+You can see that the gradient is zero when 
+$[1 - \sigma(\bm u_o^\top \bm v_c)] \bm u_o = \sum_{s=1}^K \sigma (\bm u_{w_s}^\top \bm v_c) \bm u_{w_s}$.
+For our first term, if $\bm u_o^\top \bm v_c$ is a large negative number (dissimilar) 
+then $1 - \sigma (\bm u_o^\top \bm v_c)$ evaluates to be close to $1$.
+Thus, in our gradient descent update, we'll be adding $\approx \bm u_o$ to 
+$\bm v_c$ (recall we're doing gradient descent so $- (-[1 - \sigma(\bm u_o^\top \bm v_c)] \bm u_o)
+= [1 - \sigma(\bm u_o^\top \bm v_c)] \bm u_o \approx \bm u_o$). Intuitively this makes sense because 
+adding $\bm u_o$ to $\bm v_c$ will make $\bm v_c$ more like $\bm u_o$, which is what we want.
+~\\
+~\\
+If $\bm u_o^\top \bm v_c$ is a large positive number (similar) then $1 - \sigma (\bm u_o^\top \bm v_c)$ 
+evaluates to a small number and our gradient update for the first term 
+adds approximately $0$. Again, this is intuitive because if the 
+vectors are similar already then we don't need to change $v_c$ much. 
+~\\
+~\\
+For our second term, a similar line of reasoning can be invoked to see that we're subtracting out 
+$\approx \bm u_{w_s}$ from $\bm v_c$ if $\sigma (\bm u_{w_s}^\top \bm v_c)$ is large positive (vectors are similar) 
+and doing nothing if $\sigma (\bm u_{w_s}^\top \bm v_c)$ is large negative (vectors dissimilar). 
+Again, this makes sense because we want $\bm v_c$ to be less like the vectors that 
+we negative sample and don't need to change $\bm v_c$ if that's already the case. 
+
+~\\
+~\\
+\emph{(c) Compute the partial derivatives of $\bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)$ with respect to 
+each of the `outside' word vectors, $\bm u_w$'s. There will be two cases: when $w=o$, the true 
+`outside' word vector, and $w \neq o$, for all other words. Please write your answer in terms of 
+$\bm y$, $\hat{\bm y}$, and $\bm v_c$. In this subpart, you may use specific elements within these 
+terms as well (such as $\bm y_1$, $\bm y_2$, $\dots$). Note that $\bm u_w$ is a vector while 
+$\bm y_1, \bm y_2, \dots$ are scalars.}
+~\\
+~\\
+\textbf{Case 1: $\frac{\partial}{\partial \bm u_o}$}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_o} = 
+    \frac{\partial}{\partial \bm u_o}
+    -\log(\sigma(\bm u_o^\top \bm v_c)) - 
+    \frac{\partial}{\partial \bm u_o}
+    \sum_{s=1}^K \log(\sigma(-\bm u_{w_s}^\top \bm v_c))
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_o} = 
+    - \frac{\sigma(\bm u_o^\top \bm v_c)}{\sigma(\bm u_o^\top \bm v_c)}
+    [1 - \sigma(\bm u_o^\top \bm v_c)] \bm v_c
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_o} = 
+    - [1 - \sigma(\bm u_o^\top \bm v_c)] \bm v_c
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_o} = 
+    [\sigma(\bm u_o^\top \bm v_c) - 1] \bm v_c
+\end{equation}
+\textbf{Case 2: $\frac{\partial}{\partial \bm u_{w_s}}$}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_{w_s}} = 
+    \frac{\partial}{\partial \bm u_{w_s}}
+    -\log(\sigma(\bm u_o^\top \bm v_c)) - 
+    \frac{\partial}{\partial \bm u_{w_s}}
+    \sum_{s=1}^K \log(\sigma(-\bm u_{w_s}^\top \bm v_c))
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_{w_s}} = 
+    - \frac{\sigma(-\bm u_{w_s}^\top \bm v_c)}{\sigma(-\bm u_{w_s}^\top \bm v_c)}
+    [1 - \sigma(-\bm u_{w_s}^\top \bm v_c)]
+    (- \bm v_c)
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_{w_s}} = 
+    [1 - \sigma(-\bm u_{w_s}^\top \bm v_c)]
+    \bm v_c
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_{w_s}} = 
+    \sigma(\bm u_{w_s}^\top \bm v_c) \bm v_c
+\end{equation}
+See part (b) of this problem for that last jump, it's the exact same as before. 
+
+    
+\subsubsection{(ii)}
+\underline{Instructions}
+~\\
+In lecture, we learned that an efficient implementation of backpropagation leverages the re-use of 
+previously-computed partial derivatives. Which quantity could you reuse between the three partial derivatives 
+to minimize duplicate computation? Write your answer in terms of 
+$\bm{U}_{o, \{w_1, \dots, w_K\}} = \begin{bmatrix} \bm{u}_o, -\bm{u}_{w_1}, \dots, -\bm{u}_{w_K} \end{bmatrix}$, 
+a matrix with the outside vectors stacked as columns, and $\bm{1}$, a $(K + 1) \times 1$ vector of 1's. 
+~\\
+~\\
+\underline{Solution}
+~\\
+Since we compute the sigmoid function so much we could reuse the following: 
+\begin{equation*}
+    \sigma (\bm U_{o} \bm v_c)
+\end{equation*}
+\subsubsection{(iii)}
+\underline{Instructions}
+~\\
+Describe with one sentence why this loss function is much more efficient to compute than the naive-softmax loss.
+
+Caveat: So far we have looked at re-using quantities and approximating softmax with sampling for faster 
+gradient descent. Do note that some of these optimizations might not be necessary on modern GPUs and are, 
+to some extent, artifacts of the limited compute resources available at the time when these algorithms were developed.
+~\\
+~\\
+\underline{Solution}
+~\\
+This loss function is much more efficient because, provided we have enough negative samples, the negative 
+sampling we use will approximate the gradient update we would've gotten for the entire vocabulary but 
+with literally a fraction of the vocabulary used. Instead of iterating through the entire vocabulary we 
+can just iterate though negative samples which can be orders of magnitude smaller in size. 
+
+\subsection{Problem H}
+\underline{Instructions}
+~\\
+Now we will repeat the previous exercise, but without the assumption that the $K$ sampled words are distinct.  
+Assume that $K$ negative samples (words) are drawn from the vocabulary. For simplicity of notation we shall 
+refer to them as $w_1, w_2, \dots, w_K$ and their outside vectors as $\bm u_{w_1}, \dots, \bm u_{w_K}$. 
+In this question, you may not assume that the words are distinct. In other words, $w_i=w_j$ may be true 
+when $i\neq j$ is true. Note that $o\notin\{w_1, \dots, w_K\}$. 
+For a center word $c$ and an outside word $o$, the negative sampling loss function is given by:
+
+\begin{equation}
+    \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U) = -\log(\sigma(\bm u_o^\top \bm v_c)) - \sum_{s=1}^K \log(\sigma(-\bm u_{w_s}^\top \bm v_c))
+    \end{equation}
+for a sample $w_1, \ldots w_K$, where $\sigma(\cdot)$ is the sigmoid function.
+~\\
+~\\
+Compute the partial derivative of $\bm J_{\text{neg-sample}}$ with respect to a negative sample $\bm u_{w_s}$. 
+Please write your answers in terms of the vectors $\bm v_c$ and $\bm u_{w_s}$, where $s \in [1, K]$. 
+Hint: break up the sum in the loss function into two sums: a sum over all sampled words equal to $w_s$ 
+and a sum over all sampled words not equal to $w_s$. Notation-wise, you may write `equal' and `not equal' 
+conditions below the summation symbols.    
+~\\
+~\\
+\underline{Solution}
+~\\
+I'm going to use $j$ to iterate over the sum in this equation instead of $s$ to make the 
+notation more clear. 
+\begin{equation*}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_{w_s}} = 
+    \frac{\partial}{\partial \bm u_{w_s}}
+    -\log(\sigma(\bm u_o^\top \bm v_c)) - 
+    \frac{\partial}{\partial \bm u_{w_s}}
+    \sum_{j=1}^K \log(\sigma(-\bm u_{w_j}^\top \bm v_c))
+\end{equation*}
+\begin{equation*}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_{w_s}} = 
+    - \frac{\partial}{\partial \bm u_{w_s}}
+    \sum_{j=1, \; w_s \ne w_j}^K \log(\sigma(-\bm u_{w_j}^\top \bm v_c))
+    - \frac{\partial}{\partial \bm u_{w_s}}
+    \sum_{j=1, \; w_s = w_j}^K \log(\sigma(-\bm u_{w_j}^\top \bm v_c))
+\end{equation*}
+\begin{equation*}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_{w_s}} = 
+    - \frac{\partial}{\partial \bm u_{w_s}}
+    \sum_{j=1, \; w_s = w_j}^K \log(\sigma(-\bm u_{w_j}^\top \bm v_c))
+\end{equation*}
+\begin{equation*}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_{w_s}} = 
+    - \sum_{j=1, \; w_s = w_j}^K \frac{\sigma(-\bm u_{w_j}^\top \bm v_c)}{\sigma(-\bm u_{w_j}^\top \bm v_c)}
+    [1 - \sigma(-\bm u_{w_j}^\top \bm v_c)] \bm v_c
+\end{equation*}
+\begin{equation*}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_{w_s}} = 
+    \sum_{j=1, \; w_s = w_j}^K 
+     \sigma(\bm u_{w_j}^\top \bm v_c) \bm v_c
+\end{equation*}
+
+%% PROBLEM 1-I %%
+\subsection{Problem I}
+\underline{Instructions}
+~\\
+Suppose the center word is $c = w_t$ and the context window is 
+$[w_{t-m}$, $\ldots$, $w_{t-1}$, $w_{t}$, $w_{t+1}$, $\ldots$, $w_{t+m}]$, 
+where $m$ is the context window size. Recall that for the  skip-gram version of {\tt word2vec}, 
+the total loss for the context window is:
+\begin{equation}
+\bm J_{\textrm{skip-gram}}(\bm v_c, w_{t-m},\ldots w_{t+m}, \bm U) = \sum_{\substack{-m\le j \le m \\ j\ne 0}} \bm J(\bm v_c, w_{t+j}, \bm U)
+\end{equation}
+
+Here, $\bm J(\bm v_c, w_{t+j}, \bm U)$ represents an arbitrary loss term for the center
+word $c=w_t$ and outside word $w_{t+j}$. $\bm J(\bm v_c, w_{t+j}, \bm U)$ could be 
+$\bm J_{\text{naive-softmax}}(\bm v_c, w_{t+j}, \bm U)$ or $\bm J_{\text{neg-sample}}(\bm v_c, w_{t+j}, \bm U)$, 
+depending on your implementation.
+
+Write down three partial derivatives: 
+\begin{enumerate}[label=(\roman*)]
+    \item ${\frac{\partial \bm J_{\textrm{skip-gram}}(\bm v_c, w_{t-m},\ldots w_{t+m}, \bm U)} {\partial \bm U}}$
+    \item ${\frac{\partial \bm J_{\textrm{skip-gram}}(\bm v_c, w_{t-m},\ldots w_{t+m}, \bm U)} {\partial \bm v_c}}$
+    \item ${\frac{\partial \bm J_{\textrm{skip-gram}}(\bm v_c, w_{t-m},\ldots w_{t+m}, \bm U)} {\partial \bm v_w}}$ 
+    when $w \ne c$
+\end{enumerate}
+Write your answers in terms of ${\frac{\partial \bm J(\bm v_c, w_{t+j}, \bm U)}{\partial \bm U}}$ 
+and ${\frac{\partial \bm J(\bm v_c, w_{t+j}, \bm U)}{\partial \bm v_c}}$. This is very simple -- 
+each solution should be one line.
+~\\
+~\\
+\underline{Solution}
+~\\
+At first I thought these solutions were supposed to be substituted and simplified but I'm pretty sure this 
+is literally all the question is asking. 
+\begin{equation}
+    \frac{\partial \bm J_{\textrm{neg-sample}}(\bm v_c, w_{t-m},\ldots w_{t+m}, \bm U)}{\partial \bm U} = 
+    \sum_{\substack{-m\le j \le m \\ j\ne 0}} 
+    \frac{\partial \bm J(\bm v_c, w_{t+j}, \bm U)}{\partial \bm U}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\textrm{neg-sample}}(\bm v_c, w_{t-m},\ldots w_{t+m}, \bm U)}{\partial \bm v_c} = 
+    \sum_{\substack{-m\le j \le m \\ j\ne 0}} 
+    \frac{\partial \bm J(\bm v_c, w_{t+j}, \bm U)}{\partial \bm v_c}
+\end{equation}
+\begin{equation}
+    \frac{\partial \bm J_{\textrm{neg-sample}}(\bm v_c, w_{t-m},\ldots w_{t+m}, \bm U)}{\partial \bm v_w} = 0
+\end{equation}
+
+This last one should make sense because $\bm v_w$ isn't part of the loss function at all. 
+
+\section{Programming}
+If you don't know how to use NumPy (or Python more generally) I'd suggest going through 
+\href{https://cs231n.github.io/python-numpy-tutorial/}{this tutorial} to learn the basics
+
+% Sigmoid %
+\subsection{Sigmoid}
+This one is a gimme if you know how to use NumPy at all. Literally just write down the sigmoid function 
+using $np.exp()$ and you're done. 
+
+% Naive Softmax Loss and Gradient %
+\subsection{Naive Softmax Loss and Gradient}
+Here is where all the math we've done really comes in handy. Literally 90\% of this assignment is 
+understanding and deriving the equations while the other 10\% is just writing down our 
+mathematical results for the computer to calculate. Now, let's get to programming. As we saw in Problem A, our loss function is
+\begin{equation*} 
+    \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U) = 
+    - \log(\frac{\exp(\bm u_o^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)})
+\end{equation*} 
+Let's rearrange this a bit and make it more numerically stable. These exponentials can easily blow up 
+to numbers much larger than we can store in a computer. We first add a constant $\bm C$ to both 
+the numerator and the denominator, which you can see doesn't affect the equation at all.
+\begin{equation*} 
+    \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U) = 
+    - \log(\frac{\bm C \exp(\bm u_o^\top \bm v_c)}{ \sum_{w \in \text{Vocab}} \bm C \exp(\bm u_{w}^\top \bm v_c)})
+\end{equation*} 
+Then we move the constant inside the exponential. 
+\begin{equation*} 
+    \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U) = 
+    - \log(\frac{\exp(\bm u_o^\top \bm v_c + log \bm C)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c + log \bm C)})
+\end{equation*} 
+We can then set $log \bm C = - max(\bm u_w^\top \bm v_c)$ so that the maximum value of our 
+exponential will be 1. This is prevents the exponential from blowing up the loss such that 
+it makes our code numerically unstable. For more info see 
+\href{https://cs231n.github.io/linear-classify/#softmax-classifier}{these notes from CS231N}. 
+
+In my implementation, I first found the softmax probabilities ($ \hat{ \bm y}$) 
+for every vector in $\bm U$ since we'll need it later for the gradient. Speaking of which, 
+here are our gradients computed in problems B, C, and D. 
+\begin{equation*}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    \bm U^\top (\bm {\hat y} - \bm y)
+\end{equation*}
+\begin{equation*}
+    \frac{\partial \bm J_{\text{naive-softmax}}(\bm v_c, o, \bm U)}{\partial \bm U} = 
+     ( \bm {\hat y} - \bm y ) \bm v_c^\top
+\end{equation*}
+I chose not to use a one-hot vector $\bm y$ in my code because it's quite simple 
+to just subtract 1 from the value $ \hat{ \bm y_o}$ in our $\hat {\bm y}$ vector. 
+A one-hot vector would just be a waste of space and excess computation. Hopefully my code 
+is easy to follow. It's labeled exactly the same as the math so if you know how to use 
+NumPy it should be easy to follow along. 
+
+% Negative Sampling Loss and Gradient %
+\subsection{Negative Sampling Loss and Gradient}
+Onto the more complicated negative sampling loss and gradient. Our loss from Problem G is
+\begin{equation*}
+    \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U) = -\log(\sigma(\bm u_o^\top \bm v_c)) - \sum_{s=1}^K \log(\sigma(-\bm u_{w_s}^\top \bm v_c))
+\end{equation*}
+Our first step is to get our negative samples. This is implemented for us already (yay!? 
+I'm always curious as to how things work but I'll leave my curiosity for more important things). 
+Then, we get our matrix 
+$\bm{U}_{o, \{w_1, \dots, w_K\}} = \begin{bmatrix} \bm{u}_o, -\bm{u}_{w_1}, \dots, -\bm{u}_{w_K} \end{bmatrix}$. 
+We matrix multiply $\bm U_o \bm v_c$, pass the result through our sigmoid, take the negative log 
+of every term, and sum everything to find our loss. And boom, loss calculated. 
+~\\
+~\\
+For the gradient with respect to $\bm v_c$ we have 
+\begin{equation*}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    [\sigma(\bm u_o^\top \bm v_c) - 1] \bm u_o +
+    \sum_{s=1}^K [1 - \sigma(-\bm u_{w_s}^\top \bm v_c)]
+    \bm u_{w_s}
+\end{equation*}
+Note that this isn't the final form I placed the gradient in but this is actually the 
+easiest one to work with. We can rearrange this a bit to find 
+\begin{equation*}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm v_c} = 
+    [\sigma(\bm u_o^\top \bm v_c) - 1] \bm u_o +
+    \sum_{s=1}^K [\sigma(-\bm u_{w_s}^\top \bm v_c - 1)]
+    (- \bm u_{w_s})
+\end{equation*}
+We can easily reuse $\bm U_o$ and the sigmoid we calculated before using this simple line of code 
+\begin{verbatim}
+    gradCenterVec = (sigmoid_vec - 1)  @ Uo
+\end{verbatim}
+I'll leave it to you to figure out why this works. 
+Onto our final gradient, the gradient with respect to $\bm u_o$ and $\bm u_{w_s}$. 
+From problem G part (ii) we know 
+\begin{equation*}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_o} = 
+    [\sigma(\bm u_o^\top \bm v_c) - 1] \bm v_c
+\end{equation*}
+\begin{equation*}
+    \frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_{w_s}} = 
+    [1 - \sigma(-\bm u_{w_s}^\top \bm v_c)]
+    \bm v_c
+\end{equation*}
+We use the following lines of code to find 
+$\frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm U_o}$
+
+\begin{verbatim}
+    sigmoidVec[0] -= 1
+    sigmoidVec[1:] = 1 - sigmoidVec[1:]
+    gradUo = np.outer(sigmoidVec, centerWordVec)
+\end{verbatim}
+Finally, we iterate through $\bm U_o$ and add the vector to its proper place in our 
+gradient matrix. I racked my brain for a long time to try and do this without using 
+a for loop but I could not find one. Please let me know if you did, I would thoroughly 
+enjoy knowing. 
+
+\subsection{Skipgram}
+This function is pretty simple. All you need to do is iterate over all the words, add 
+all the losses, add all the gradients, and spit back the output. Nothing much going on 
+here to be honest. Although I will note that in the gradient checker, if you switch 
+the order in which you check the two different functions (negative sampling vs. softmax), 
+you actually get a different loss. I'm not totally sure what that's about but it was something 
+worth mentioning. 
+
+\subsection{Stochastic Gradient Descent}
+The update rule is pretty simple here. We just use the following code 
+per usual
+\begin{verbatim}
+    loss, gradient = f(x)
+    x -= step * gradient
+\end{verbatim}
+Anyways, that's all for this assignment! My implementation ran in ~30 minutes 
+on Macbook with M1 chip for reference. 
+
+
+\section{References}
+\begin{enumerate}
+    \item \href{https://cs231n.github.io/python-numpy-tutorial/}{Python Tutorial}
+    \item \href{https://cs231n.github.io/linear-classify/#softmax-classifier}{Softmax}
+\end{enumerate}
+
+
+
+
+
+\end{document}
