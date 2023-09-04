@@ -8,27 +8,27 @@ There are 5 assignments, each of which have their own directory (a1, ..., a5). A
 I've written a pdf "guide" (LaTeX) for each assignment explaining the mathematics, my thought process, and overarching concepts.
 
 ## Assignment 1: Exploring Word Vectors
-  - [exploring_word_vectors.ipynb](https://github.com/bensmidt/machine-learning/blob/main/cs224n/A1/exploring_word_vectors.ipynb)
-  - [PDF Work/Explanations](https://github.com/bensmidt/machine-learning/blob/main/cs224n/A1/A1-ExploringWordVectors.pdf)
+  - [exploring_word_vectors.ipynb](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a1/exploring_word_vectors.ipynb)
+  - [PDF Work/Explanations](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a1/report/ExploringWordVectors.pdf)
 
 ## Assignment 2: Word2Vec
-  - [Instructions](https://github.com/bensmidt/CS224N-Deep-Learning-NLP/blob/main/A2/A2-Instructions.pdf)
-  - [word2vec.py](https://github.com/bensmidt/CS224N-Deep-Learning-NLP/blob/main/A2/word2vec.py)
-  - [sgd.py](https://github.com/bensmidt/CS224N-Deep-Learning-NLP/blob/main/A2/sgd.py)
-  - [PDF Work/Explanations](https://github.com/bensmidt/CS224N-DL-NLP/blob/main/A2/A2-Latex/A2-Word2Vec.pdf)
-  - [word_vectors.png](https://github.com/bensmidt/CS224N-DL-NLP/blob/main/A2/word_vectors.png)
+  - [Instructions](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a2/instructions/a2_latex_template.pdf)
+  - [word2vec.py](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a2/word2vec.py)
+  - [sgd.py](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a2/sgd.py)
+  - [PDF Work/Explanations](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a2/report/WordVectors.pdf)
+  - [word_vectors.png](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a2/word_vectors.png)
 
 ## Assignment 3: Dependency Parsing with Neural Networks
-  - [Instructions](https://github.com/bensmidt/CS224N-DL-Natural-Language-Processing/blob/main/A3/a3-instructions.pdf)
-  - [parser_transitions.py](https://github.com/bensmidt/CS224N-DL-Natural-Language-Processing/blob/main/A3/parser_transitions.py)
-  - [parser_model.py](https://github.com/bensmidt/CS224N-DL-Natural-Language-Processing/blob/main/A3/parser_model.py)
-  - [PDF Work/Explanations](https://github.com/bensmidt/CS224N-DL-Natural-Language-Processing/blob/main/A3/a3-latex/A3-NNs_Dependency_Parsing.pdf)
+  - [Instructions](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a3/instructions.pdf)
+  - [parser_transitions.py](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a3/parser_transitions.py)
+  - [parser_model.py](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a3/parser_model.py)
+  - [PDF Work/Explanations](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a3/report/NNDependencyParsing.pdf)
 
 ## Assignment 4: Machine Translation with RNNs
-  - [Instructions](https://github.com/bensmidt/CS224N-DL-Natural-Language-Processing/blob/main/A4/A4-Instructions.pdf)
-  - [model_embeddings.py](https://github.com/bensmidt/CS224N-DL-Natural-Language-Processing/blob/main/A4/model_embeddings.py)
-  - [nmt_model.py](https://github.com/bensmidt/CS224N-DL-Natural-Language-Processing/blob/main/A4/nmt_model.py)
-  - [PDF Work/Explanations](https://github.com/bensmidt/CS224N-DL-Natural-Language-Processing/blob/main/A4/A4-Latex/A4-NMT_RNN.pdf)
+  - [Instructions](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a4/instructions.pdf)
+  - [model_embeddings.py](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a4/model_embeddings.py)
+  - [nmt_model.py](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a4/nmt_model.py)
+  - [PDF Work/Explanations](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a4/report/MachineTranslationRNNs.pdf)
 
 ## Assignment 5: Self-Attention, Transformers, and Pretraining
-- [Instructions](https://github.com/bensmidt/CS224N-DL-Natural-Language-Processing/blob/main/A5/A5-Instructions.pdf)
+- [Instructions](https://github.com/bensmidt/machine-learning/blob/main/cs224n/a5/instructions.pdf)
