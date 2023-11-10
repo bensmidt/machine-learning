@@ -1,0 +1,7 @@
+- [Introduction to Statistical Learning](https://www.statlearning.com/) by James, Witten, Hastie, Tibshirani, and Taylor (2023)
+- [Deep Learning](https://www.deeplearningbook.org/) by Goodfellow, Bengio, and Courville (2016)
+- Pattern Recongition and Machine Learning by Christopher M. Bishop (2006)
+- The Elements of Statistical Learning by Hastie, Tibshirani, and Friedman (2017)
+- [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/) by Jurafsky and Martin (2023)
+- [Probabilistic Machine Learning](https://probml.github.io/pml-book/book1.html) by Kevin Murphy (2022)
+- Convex Optimization by Boyd and Vadanberghe (2004)
