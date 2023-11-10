@@ -1,3 +1,8 @@
+- [Deep Learning Papers Reading Roadmap](https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap)
+- [Awesome - Most Cited Deep Learning Papers](https://github.com/terryum/awesome-deep-learning-papers#awesome---most-cited-deep-learning-papers)
+- [Deep Vision](https://github.com/kjw0612/awesome-deep-vision)
+- [Awesome Recurrent Neural Networks](https://github.com/kjw0612/awesome-rnn)
+
 
 - Glorot, X. & Bengio, Y. (2010). Understanding the difficulty of training deep feedforward neural networks. In Y. W. Teh & D. M. Titterington (eds.), AISTATS (p./pp. 249-256), : JMLR.org.
 
