@@ -16,4 +16,5 @@ to go to their dedicated README which contains more information about each invid
 [Articles](https://github.com/bensmidt/machine-learning/tree/main/articles.md)
 
 ## Papers
-[Papers](https://github.com/bensmidt/machine-learning/tree/main/papers.md)
+[Deep Learning](https://github.com/bensmidt/machine-learning/tree/main/deep-learning.md)
+[Machine Learning](https://github.com/bensmidt/machine-learning/tree/main/statistical-learning.md)

@@ -19,7 +19,7 @@ def hello_linear_classifier():
 
 # Template class modules that we will use later: Do not edit/modify this class
 class LinearClassifier:
-    """An abstarct class for the linear classifiers"""
+    """An abstract class for the linear classifiers"""
 
     # Note: We will re-use `LinearClassifier' in both SVM and Softmax
     def __init__(self):
