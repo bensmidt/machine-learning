@@ -2,7 +2,6 @@
 My solutions to Michigan's public course [EECS 498.007: Deep Learning for Computer Vision](https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2019/schedule.html), taught by Justin Johnson (Fall 2019). Lectures are freely available on [YouTube](https://www.youtube.com/playlist?list=PL5-TkQAfAZFbzxjBHtzdVCWE0Zbhomg7r).
 
 # Lecture Notes
-
 Course slides and lecture notes can be found [here](https://web.eecs.umich.edu/~justincj/teaching/eecs498/WI2022/schedule.html) by clicking on the top link (slides) or the bottom link (notes) for a given lecture. Note that lecture 1 does not have any lecture notes. 
 
 # Assignments
@@ -21,34 +20,28 @@ I've written a pdf "guide" (LaTeX) for each assignment (except this first since 
 
 ## Assignment 2
    1. Linear Classifiers
-      - [linear_classifier.ipynb](https://github.com/bensmidt/EECS-498-DL-Computer-Vision/blob/main/A2/linear_classifier.ipynb)
-      - [linear_classifier.py](https://github.com/bensmidt/EECS-498-DL-Computer-Vision/blob/main/A2/linear_classifier.py)
-      - [Support Vector Machines Explanation/Work](https://github.com/bensmidt/EECS-498-DL-Computer-Vision/blob/main/A2/A2-SVM.pdf)
-      - [Softmax Explanation/Work](https://github.com/bensmidt/EECS-498-DL-Computer-Vision/blob/main/A2/A2-Softmax.pdf)
+      - [linear_classifier.ipynb](https://github.com/bensmidt/machine-learning/blob/main/eecs498/a2/linear_classifier.ipynb)
+      - [linear_classifier.py](https://github.com/bensmidt/machine-learning/blob/main/eecs498/a2/linear_classifier.py)
    2. Two Layer Neural Network
-      - [two_layer_net.ipynb](https://github.com/bensmidt/EECS-498-DL-Computer-Vision/blob/main/A2/two_layer_net.ipynb)
-      - [two_layer_net.py](https://github.com/bensmidt/EECS-498-DL-Computer-Vision/blob/main/A2/two_layer_net.py)
-      - [Basic NN and Backpropagation Explanation/Work](https://github.com/bensmidt/EECS-498-DL-Computer-Vision/blob/main/A2/A2-Two-Layer-NN.pdf)
+      - [two_layer_net.ipynb](https://github.com/bensmidt/machine-learning/blob/main/eecs498/a2/two_layer_net.ipynb)
+      - [two_layer_net.py](https://github.com/bensmidt/machine-learning/blob/main/eecs498/a2/two_layer_net.py)
    3. MNIST Challenge Problem 
-      - [challenge_problem.ipynb](https://github.com/bensmidt/EECS-498-DL-Computer-Vision/blob/main/A2/challenge_problem.ipynb)
+      - [challenge_problem.ipynb](https://github.com/bensmidt/machine-learning/blob/main/eecs498/a2/challenge_problem.ipynb)
   
 ## Assignment 3
-  1. Fully Connected Network: 
-      - [fully_connected_networks.ipynb](https://github.com/bensmidt/EECS-498-DL-Computer-Vision/blob/main/A3/fully_connected_networks.ipynb)
-      - [fully_connected_networks.py](https://github.com/bensmidt/EECS-498-DL-Computer-Vision/blob/main/A3/fully_connected_networks.py)
-      - [Fully Connected Networks Explanation/Work](https://github.com/bensmidt/EECS-498-DL-Computer-Vision/blob/main/A3/A3-Fully-Connected.pdf)
+  1. Fully Connected Network:
+      - [fully_connected_networks.ipynb](https://github.com/bensmidt/machine-learning/blob/main/eecs498/a3/fully_connected_networks.ipynb)
+      - [fully_connected_networks.py](https://github.com/bensmidt/machine-learning/blob/main/eecs498/a3/fully_connected_networks.py)
   2. Convolutional Neural Networks and Batch Normalization: 
-      - [convolutional_networks.ipynb](https://github.com/bensmidt/EECS-498-DL-Computer-Vision/blob/main/A3/convolutional_networks.ipynb)
-      - [convolutional_networks.py](https://github.com/bensmidt/EECS-498-DL-Computer-Vision/blob/main/A3/convolutional_networks.py)
-      - [CNN and Batch Norm Explanation](https://github.com/bensmidt/EECS-498-DL-Computer-Vision/blob/main/A3/Conv-NN-Batch-Norm.pdf)
+      - [convolutional_networks.ipynb](https://github.com/bensmidt/machine-learning/blob/main/eecs498/a3/convolutional_networks.ipynb)
+      - [convolutional_networks.py](https://github.com/bensmidt/machine-learning/blob/main/eecs498/a3/convolutional_networks.py)
 
 ## Assignment 4
-  1. PyTorch AutoGrad: 
-      - [PyTorch Notes](https://github.com/bensmidt/EECS498-DL-Computer-Vision/blob/main/A4/PyTorch.md)
+  1. PyTorch AutoGrad:
+      - [PyTorch Notes](https://github.com/bensmidt/machine-learning/blob/main/eecs498/a4/PyTorch.md)
   2. Image Captioning with Recurrent Neural Networks
-      - [rnn_lstm_attention_captioning.ipynb](https://github.com/bensmidt/EECS498-DL-Computer-Vision/blob/main/A4/rnn_lstm_attention_captioning.ipynb)
-      - [rnn_lstm_attention_captioning.py](https://github.com/bensmidt/EECS498-DL-Computer-Vision/blob/main/A4/rnn_lstm_attention_captioning.py)
-      - [RNNs, LSTMs, Attention Work/Explained](https://github.com/bensmidt/EECS498-DL-Computer-Vision/blob/main/A4/RNNs-LSTM-Attention.pdf)
+      - [rnn_lstm_attention_captioning.ipynb](hhttps://github.com/bensmidt/machine-learning/blob/main/eecs498/a4/rnn_lstm_attention_captioning.ipynb)
+      - [rnn_lstm_attention_captioning.py](hthttps://github.com/bensmidt/machine-learning/blob/main/eecs498/a4/rnn_lstm_attention_captioning.py)
   3. Network Visualization
   4. Style Transfer
 
