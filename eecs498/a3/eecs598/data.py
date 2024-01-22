@@ -132,7 +132,7 @@ def preprocess_cifar10(
         ]
         samples_per_class = 12
         samples = []
-        eecs598.reset_seed(0)
+        eecs598.utils.reset_seed(0)
         for y, cls in enumerate(classes):
             plt.text(-4, 34 * y + 18, cls, ha="right")
             (idxs,) = (y_train == y).nonzero(as_tuple=True)
