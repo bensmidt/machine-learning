@@ -6,28 +6,46 @@
 ## 1951 - 1979
 
 ## 1980 - 1997
-- Fukushima, K. Neocognitron: A self-organizing neural network model for a mechanism of pattern recognition unaffected by shift in position. Biol. Cybernetics 36, 193–202 (1980). https://doi.org/10.1007/BF00344251 [pdf](https://www.rctn.org/bruno/public/papers/Fukushima1980.pdf)
+- [Neocognitron / CNN (1980)](https://www.rctn.org/bruno/public/papers/Fukushima1980.pdf)
 
 
-## 1998 - 2010
-- Hinton, Geoffrey E., Simon Osindero, and Yee-Whye Teh. "A fast learning algorithm for deep belief nets." Neural computation 18.7 (2006): 1527-1554.
+## 1998 - 2011
+- [A fast learning algorithm for deep belief nets (2006)](https://www.cs.toronto.edu/~hinton/absps/fastnc.pdf)
 
+- [Understanding the difficulty of training deep feedforward neural networks (2010)](https://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf)
 
-## 2010 - 2017
-- Glorot, X. & Bengio, Y. (2010). Understanding the difficulty of training deep feedforward neural networks. In Y. W. Teh & D. M. Titterington (eds.), AISTATS (p./pp. 249-256), : JMLR.org.
+- [AdaGrad (2011)](https://jmlr.org/papers/v12/duchi11a.html)
 
-- Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. "Imagenet classification with deep convolutional neural networks." Advances in neural information processing systems. 2012. [pdf](https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)
+- [Random Search vs. Grid Search for Hypyer-Parameter Optimization (2011)](https://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf)
 
-- Hinton, G. E., Srivastava, N., Krizhevsky, A., Sutskever, I., & Salakhutdinov, R. R. (2012). Improving neural networks by preventing co-adaptation of feature detectors. arXiv preprint arXiv:1207.0580.
+## 2012 - 2017
 
-- Tang, Yichuan. "Deep learning using linear support vector machines." arXiv preprint arXiv:1306.0239 (2013). [pdf](https://arxiv.org/abs/1306.0239)
+- [Practical Recommendations for Gradient-Based Training of Deep Architectures (2012)](https://arxiv.org/pdf/1206.5533v2.pdf)
 
-- Kingma, D. P., & Ba, J. (2014). Adam: A method for stochastic optimization. arXiv preprint arXiv:1412.6980.
+- [AlexNet (2012)](https://papers.nips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)
 
-- Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., & Salakhutdinov, R. (2014). Dropout: a simple way to prevent neural networks from overfitting. The journal of machine learning research, 15(1), 1929-1958.
+- [Dropout I (July 2012)](https://arxiv.org/abs/1207.0580)
 
-- Ioffe, S., & Szegedy, C. (2015, June). Batch normalization: Accelerating deep network training by reducing internal covariate shift. In International conference on machine learning (pp. 448-456). pmlr.
+- [Deep Learning using Linear Support Vector Machines (June 2013)](https://arxiv.org/abs/1306.0239)
 
-- He, K., Zhang, X., Ren, S., & Sun, J. (2015). Delving deep into rectifiers: Surpassing human-level performance on imagenet classification. In Proceedings of the IEEE international conference on computer vision (pp. 1026-1034).
+- [Dropout II (Nov 2013)](https://jmlr.org/papers/v15/srivastava14a.html)
+
+- [GoogLeNet (Sep 2014)](https://arxiv.org/abs/1409.4842)
+
+- [VGG (Sep 2014)](https://arxiv.org/abs/1409.1556)
+
+- [Adam (Dec 2014)](https://arxiv.org/abs/1412.6980)
+
+- [Batch Normalization (Feb 2015)](https://arxiv.org/abs/1502.03167)
+
+- [Leaky ReLU (Feb 2015)](https://arxiv.org/abs/1502.01852)
 
 ## 2017 - Present
+
+
+## Additional Resources
+- [A Recipe for Training Neural Networks](https://karpathy.github.io/2019/04/25/recipe/)
+
+- [Universal Approximation](http://neuralnetworksanddeeplearning.com/chap4.html)
+
+- [What Every computer Scientist Should Know About Float-Point Arithmetic](https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html)
