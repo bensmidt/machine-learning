@@ -12,7 +12,7 @@
 ## 1998 - 2011
 - [A fast learning algorithm for deep belief nets (2006)](https://www.cs.toronto.edu/~hinton/absps/fastnc.pdf)
 
-- [Understanding the difficulty of training deep feedforward neural networks (2010)](https://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf)
+- [Understanding the difficulty of training deep feedforward neural networks / Xavier Initialization (2010)](https://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf)
 
 - [AdaGrad (2011)](https://jmlr.org/papers/v12/duchi11a.html)
 
@@ -38,14 +38,6 @@
 
 - [Batch Normalization (Feb 2015)](https://arxiv.org/abs/1502.03167)
 
-- [Leaky ReLU (Feb 2015)](https://arxiv.org/abs/1502.01852)
+- [PReLU / Kaiming Initialization (Feb 2015)](https://arxiv.org/abs/1502.01852)
 
 ## 2017 - Present
-
-
-## Additional Resources
-- [A Recipe for Training Neural Networks](https://karpathy.github.io/2019/04/25/recipe/)
-
-- [Universal Approximation](http://neuralnetworksanddeeplearning.com/chap4.html)
-
-- [What Every computer Scientist Should Know About Float-Point Arithmetic](https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html)
