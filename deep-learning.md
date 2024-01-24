@@ -1,18 +1,17 @@
-- [Deep Learning Papers Reading Roadmap](https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap)
-- [Awesome - Most Cited Deep Learning Papers](https://github.com/terryum/awesome-deep-learning-papers#awesome---most-cited-deep-learning-papers)
-- [Deep Vision](https://github.com/kjw0612/awesome-deep-vision)
-- [Awesome Recurrent Neural Networks](https://github.com/kjw0612/awesome-rnn)
-
 ## 1951 - 1979
 
 ## 1980 - 1997
 - [Neocognitron / CNN (1980)](https://www.rctn.org/bruno/public/papers/Fukushima1980.pdf)
 
+- [RNN Training Difficulties (1994)](https://www.iro.umontreal.ca/~lisa/pointeurs/ieeetrnn94.pdf)
+
+- [LSTM (1997)](https://www.bioinf.jku.at/publications/older/2604.pdf)
+
 
 ## 1998 - 2011
-- [A fast learning algorithm for deep belief nets (2006)](https://www.cs.toronto.edu/~hinton/absps/fastnc.pdf)
+- [A Fast Learning Algorithm for Deep Belief Nets (2006)](https://www.cs.toronto.edu/~hinton/absps/fastnc.pdf)
 
-- [Understanding the difficulty of training deep feedforward neural networks / Xavier Initialization (2010)](https://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf)
+- [Xavier Initialization / Understanding the Difficulty of Training Deep Feedforward Neural Networks (2010)](https://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf)
 
 - [AdaGrad (2011)](https://jmlr.org/papers/v12/duchi11a.html)
 
@@ -24,13 +23,17 @@
 
 - [AlexNet (2012)](https://papers.nips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)
 
-- [Dropout I (July 2012)](https://arxiv.org/abs/1207.0580)
+- [Dropout I (Jul 2012)](https://arxiv.org/abs/1207.0580)
 
-- [Deep Learning using Linear Support Vector Machines (June 2013)](https://arxiv.org/abs/1306.0239)
+- [Difficulty of Training RNNs (Nov 2012)](https://arxiv.org/abs/1211.5063)
+
+- [Deep Learning using Linear Support Vector Machines (Jun 2013)](https://arxiv.org/abs/1306.0239)
 
 - [Dropout II (Nov 2013)](https://jmlr.org/papers/v15/srivastava14a.html)
 
 - [GoogLeNet (Sep 2014)](https://arxiv.org/abs/1409.4842)
+
+- [Seq2Seq Translation with RNNs (Sep 2014)](https://arxiv.org/abs/1409.3215)
 
 - [VGG (Sep 2014)](https://arxiv.org/abs/1409.1556)
 
@@ -40,4 +43,21 @@
 
 - [PReLU / Kaiming Initialization (Feb 2015)](https://arxiv.org/abs/1502.01852)
 
+- [ResNet (Dec 2015)](https://arxiv.org/abs/1512.03385)
+
+- [ResNeXt (Nov 2016)](https://arxiv.org/abs/1611.05431)
+
 ## 2017 - Present
+
+- [Attention is All You Need (Jun 2017)](https://arxiv.org/abs/1706.03762)
+
+- [BERT (Oct 2018)](https://arxiv.org/abs/1810.04805)
+
+- [RoBERTa (Jul 2019)](https://arxiv.org/abs/1907.11692)
+
+
+## References
+- [Deep Learning Papers Reading Roadmap](https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap)
+- [Awesome - Most Cited Deep Learning Papers](https://github.com/terryum/awesome-deep-learning-papers#awesome---most-cited-deep-learning-papers)
+- [Deep Vision](https://github.com/kjw0612/awesome-deep-vision)
+- [Awesome Recurrent Neural Networks](https://github.com/kjw0612/awesome-rnn)

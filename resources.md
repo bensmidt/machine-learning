@@ -10,6 +10,8 @@
 
 - [Universal Approximation](http://neuralnetworksanddeeplearning.com/chap4.html)
 
+- [The Unreasonable Effectiveness of Recurrent Neural Networks](https://karpathy.github.io/2015/05/21/rnn-effectiveness/)
+
 ## Machine Learning
 - [Recognizing and Learning Object Categories (2005)](https://people.csail.mit.edu/torralba/shortCourseRLOC/index.html)
 
