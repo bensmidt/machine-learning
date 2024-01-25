@@ -33,7 +33,9 @@
 
 - [GoogLeNet (Sep 2014)](https://arxiv.org/abs/1409.4842)
 
-- [Seq2Seq Translation with RNNs (Sep 2014)](https://arxiv.org/abs/1409.3215)
+- [Machine Translation w/ RNNs (Sep 2014)](https://arxiv.org/abs/1409.3215)
+
+- [Machine Translation w/ Attention (Sep 2014)](https://arxiv.org/pdf/1409.0473.pdf)
 
 - [VGG (Sep 2014)](https://arxiv.org/abs/1409.1556)
 
@@ -42,6 +44,8 @@
 - [Batch Normalization (Feb 2015)](https://arxiv.org/abs/1502.03167)
 
 - [PReLU / Kaiming Initialization (Feb 2015)](https://arxiv.org/abs/1502.01852)
+
+- [Image Captioning w/ Attention (Feb 2015)](https://arxiv.org/abs/1502.03044)
 
 - [ResNet (Dec 2015)](https://arxiv.org/abs/1512.03385)
 
