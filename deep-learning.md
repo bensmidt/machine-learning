@@ -1,22 +1,4 @@
-## 1943 - 1973
-- [Receptive Fields of Single Neurons in the Cat's Striate Cortex (1959)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1363130/pdf/jphysiol01298-0128.pdf)
-
-- [Reeptive Fields, Binocular Interaction and Functional Architecture in the Cat's Visual Crotex (1962)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1359523/pdf/jphysiol01247-0121.pdf)
-
-- [Summer Vision Project (Seymour Papert and Marvin Minsky - 1966)](https://people.csail.mit.edu/brooks/idocs/AIM-100.pdf)
-
-## 1974 - 1980 (First AI Winter)
-
-## 1980 - 1987
-- [Neocognitron / CNN (1980)](https://www.rctn.org/bruno/public/papers/Fukushima1980.pdf)
-
-## 1987 - 1993 (Second AI Winter)
-
-## 1993 - 2011
-- [RNN Training Difficulties (1994)](https://www.iro.umontreal.ca/~lisa/pointeurs/ieeetrnn94.pdf)
-
-- [LSTM (1997)](https://www.bioinf.jku.at/publications/older/2604.pdf)
-
+## 2000 - 2012
 - [A Fast Learning Algorithm for Deep Belief Nets (2006)](https://www.cs.toronto.edu/~hinton/absps/fastnc.pdf)
 
 - [Xavier Initialization / Understanding the Difficulty of Training Deep Feedforward Neural Networks (2010)](https://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf)
@@ -73,4 +55,3 @@
 - [Awesome - Most Cited Deep Learning Papers](https://github.com/terryum/awesome-deep-learning-papers#awesome---most-cited-deep-learning-papers)
 - [Deep Vision](https://github.com/kjw0612/awesome-deep-vision)
 - [Awesome Recurrent Neural Networks](https://github.com/kjw0612/awesome-rnn)
-- [History of Information](https://www.historyofinformation.com/index.php?cat=71)
