@@ -16,3 +16,6 @@
 - [Recognizing and Learning Object Categories (2005)](https://people.csail.mit.edu/torralba/shortCourseRLOC/index.html)
 
 - [A Few Useful Things to Know About Machine Learning (Oct 2012)](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf)
+
+## Public Courses
+- [Neural Networks (CS342)](https://www.philkr.net/cs342/)
