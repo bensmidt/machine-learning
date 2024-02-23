@@ -1,6 +1,8 @@
 ## 2000 - 2012
 - [A Fast Learning Algorithm for Deep Belief Nets (2006)](https://www.cs.toronto.edu/~hinton/absps/fastnc.pdf)
 
+- [Imagenet (2009)](https://image-net.org/static_files/papers/imagenet_cvpr09.pdf)
+
 - [Xavier Initialization / Understanding the Difficulty of Training Deep Feedforward Neural Networks (2010)](https://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf)
 
 - [AdaGrad (2011)](https://jmlr.org/papers/v12/duchi11a.html)
@@ -19,23 +21,37 @@
 
 - [Deep Learning using Linear Support Vector Machines (Jun 2013)](https://arxiv.org/abs/1306.0239)
 
+- [Generating Sequences with RNNs (Aug 2013)](https://arxiv.org/abs/1308.0850)
+
 - [Dropout II (Nov 2013)](https://jmlr.org/papers/v15/srivastava14a.html)
+
+- [Network in Network (Dec 2013)](https://arxiv.org/abs/1312.4400)
+
+- [Seq2Seq RNNs (Jun 2014)](https://arxiv.org/abs/1406.1078)
+
+- [Attention (Sep 2014)](https://arxiv.org/pdf/1409.0473.pdf)
 
 - [GoogLeNet (Sep 2014)](https://arxiv.org/abs/1409.4842)
 
 - [Machine Translation w/ RNNs (Sep 2014)](https://arxiv.org/abs/1409.3215)
 
-- [Machine Translation w/ Attention (Sep 2014)](https://arxiv.org/pdf/1409.0473.pdf)
-
 - [VGG (Sep 2014)](https://arxiv.org/abs/1409.1556)
+
+- [Learning a Recurrent Visual Representation for Image Caption Generation (Nov 2014)](https://arxiv.org/abs/1411.5654)
+
+- [Show and Tell: A Neural Image Caption Generator (Nov 2014)](https://arxiv.org/abs/1411.4555)
+
+- [Deep Visual-Semantic Alignments for Generating Image Descriptions (Dec 2014)](https://arxiv.org/abs/1412.2306)
 
 - [Adam (Dec 2014)](https://arxiv.org/abs/1412.6980)
 
 - [Batch Normalization (Feb 2015)](https://arxiv.org/abs/1502.03167)
 
+- [Image Captioning w/ Attention (Feb 2015)](https://arxiv.org/abs/1502.03044)
+
 - [PReLU / Kaiming Initialization (Feb 2015)](https://arxiv.org/abs/1502.01852)
 
-- [Image Captioning w/ Attention (Feb 2015)](https://arxiv.org/abs/1502.03044)
+- [Show, Attend and Tell: Neural Image Caption Generation with Visual Attention (Deb 2015)](https://arxiv.org/abs/1502.03044)
 
 - [ResNet (Dec 2015)](https://arxiv.org/abs/1512.03385)
 
@@ -43,7 +59,7 @@
 
 ## 2017 - Present (Transformers)
 
-- [Attention is All You Need (Jun 2017)](https://arxiv.org/abs/1706.03762)
+- [Transformer (Jun 2017)](https://arxiv.org/abs/1706.03762)
 
 - [BERT (Oct 2018)](https://arxiv.org/abs/1810.04805)
 
