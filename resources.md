@@ -49,13 +49,15 @@
 - Deep Learning for Natural Language Processing:  2016-2017 ([2017](https://github.com/oxford-cs-deepnlp-2017/lectures))
 
 ### Reinforcement Learning
-- Deep Reinforcement Learning [(Fall 2021)](https://rail.eecs.berkeley.edu/deeprlcourse/)
-- [Reddit Post](https://www.reddit.com/r/reinforcementlearning/comments/lbk4iu/a_good_rl_course_among_these/)
+- Introduction to Reinforcement Learning [(2015)](https://www.davidsilver.uk/teaching/)
+- Deep Reinforcement Learning [(Fall 2023)](https://rail.eecs.berkeley.edu/deeprlcourse/)
+- CS234 Reinforcement Learning [(Winter 2023)](https://web.stanford.edu/class/cs234/)
+- [Reddit Post](https://www.reddit.com/r/reinforcementlearning/comments/lbk4iu/a_good_rl_course_among_these/) | [Discord Wiki](https://github.com/andyljones/reinforcement-learning-discord-wiki/wiki#first-steps)
 
 ### Other
 - [Deep Learning for Art, Aesthetics, and Creativity](https://ali-design.github.io/deepcreativity/)
 - Geometric Deep Learning [(Fall 2021)](https://geometricdeeplearning.com/lectures/)
-- Reinforcement Learning ([2015](https://www.davidsilver.uk/teaching/))
+- Evolutionary Computation [(Fall 2023)](https://cobweb.cs.uga.edu/~khaled/ECcourse/)
 
 ## Textbooks
 ### Statistical Learning
@@ -78,6 +80,9 @@
 - [Mathematics for Machine Learning (2020)](https://drive.google.com/file/d/1eH1EKU_f5pzaak5k_Xj4Tkxw3rNheCOB/view?usp=drive_link)
 - [Gaussian Processes for Machine Learning (2006) ](https://drive.google.com/file/d/1mGEb05gAzf-YBL0S0CS9pgv2oO1f4Xqx/view?usp=drive_link)
 - [Convex Optimization by Boyd and Vadanberghe (2009)](https://drive.google.com/file/d/1YHsMwvyLHtv7eAetgOfugqwgXkdnGKBd/view?usp=drive_link)
+
+## Reinforcement Learning
+- [Reinforcement Learning: An Introduction (2018)](http://incompleteideas.net/book/the-book-2nd.html)
 
 ### MLOps
 - [Building Machine Learning Pipelines (2020)](https://drive.google.com/file/d/145Bv4tM1mrnJ4x8aA4UrXE00Nsnv7r_w/view?usp=drive_link)
