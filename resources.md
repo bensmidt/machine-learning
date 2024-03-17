@@ -7,6 +7,7 @@
 - [A Recipe for Training Neural Networks](https://karpathy.github.io/2019/04/25/recipe/)
 - [Universal Approximation](http://neuralnetworksanddeeplearning.com/chap4.html)
 - [The Unreasonable Effectiveness of Recurrent Neural Networks](https://karpathy.github.io/2015/05/21/rnn-effectiveness/)
+- [Object Detection as a Machine Learning Problem](https://www.youtube.com/watch?v=her4_rzx09o)
 
 ## Machine Learning
 - [Recognizing and Learning Object Categories (2005)](https://people.csail.mit.edu/torralba/shortCourseRLOC/index.html)
@@ -38,6 +39,7 @@
 ### Computer Vision
 - [EECS 498 Deep Learning for Computer Vision](https://web.eecs.umich.edu/~justincj/teaching/eecs498/WI2022/schedule.html)
 - Advances in Computer Vision [(Fall 2019)](http://6.869.csail.mit.edu/fa19/schedule.html)
+- [Reddit Post](https://www.reddit.com/r/computervision/comments/12m570l/recommended_computer_vision_courses_certifications/)
 
 ### Natural Language Processing
 - [CS 224N Natural Language Processing](https://web.stanford.edu/class/cs224n/)
@@ -46,9 +48,12 @@
     - [YouTube](https://www.youtube.com/channel/UC_48v322owNVtORXuMeRmpA)
 - Deep Learning for Natural Language Processing:  2016-2017 ([2017](https://github.com/oxford-cs-deepnlp-2017/lectures))
 
+### Reinforcement Learning
+- Deep Reinforcement Learning [(Fall 2021)](https://rail.eecs.berkeley.edu/deeprlcourse/)
+- [Reddit Post](https://www.reddit.com/r/reinforcementlearning/comments/lbk4iu/a_good_rl_course_among_these/)
+
 ### Other
 - [Deep Learning for Art, Aesthetics, and Creativity](https://ali-design.github.io/deepcreativity/)
-- Deep Reinforcement Learning [(Fall 2021)](https://rail.eecs.berkeley.edu/deeprlcourse/)
 - Geometric Deep Learning [(Fall 2021)](https://geometricdeeplearning.com/lectures/)
 - Reinforcement Learning ([2015](https://www.davidsilver.uk/teaching/))
 

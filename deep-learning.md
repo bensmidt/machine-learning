@@ -1,7 +1,5 @@
-## 2000 - 2012
+## 2000 - 2012 (Setting the Stage)
 - [A Fast Learning Algorithm for Deep Belief Nets (2006)](https://www.cs.toronto.edu/~hinton/absps/fastnc.pdf)
-
-- [Imagenet (2009)](https://image-net.org/static_files/papers/imagenet_cvpr09.pdf)
 
 - [Xavier Initialization / Understanding the Difficulty of Training Deep Feedforward Neural Networks (2010)](https://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf)
 
@@ -9,7 +7,7 @@
 
 - [Random Search vs. Grid Search for Hypyer-Parameter Optimization (2011)](https://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf)
 
-## 2012 - 2017 (Deep Learning)
+## 2012 - 2017 (Deep Learning Revolution)
 
 - [Practical Recommendations for Gradient-Based Training of Deep Architectures (2012)](https://arxiv.org/pdf/1206.5533v2.pdf)
 
@@ -24,6 +22,8 @@
 - [Generating Sequences with RNNs (Aug 2013)](https://arxiv.org/abs/1308.0850)
 
 - [Dropout II (Nov 2013)](https://jmlr.org/papers/v15/srivastava14a.html)
+
+- [R-CNN (Nov 2013)](https://arxiv.org/abs/1311.2524)
 
 - [Network in Network (Dec 2013)](https://arxiv.org/abs/1312.4400)
 
@@ -51,17 +51,27 @@
 
 - [PReLU / Kaiming Initialization (Feb 2015)](https://arxiv.org/abs/1502.01852)
 
+- [Fast R-CNN (Apr 2015)](https://arxiv.org/abs/1504.08083)
+
+- [Faster R-CNN (Jun 2015)](https://arxiv.org/abs/1506.01497)
+
+- [YOLO (Jun 2015)](https://arxiv.org/abs/1506.02640)
+
 - [Show, Attend and Tell: Neural Image Caption Generation with Visual Attention (Deb 2015)](https://arxiv.org/abs/1502.03044)
 
 - [ResNet (Dec 2015)](https://arxiv.org/abs/1512.03385)
 
 - [ResNeXt (Nov 2016)](https://arxiv.org/abs/1611.05431)
 
-## 2017 - Present (Transformers)
+## 2017 - Present (Transformer Era)
 
 - [Transformer (Jun 2017)](https://arxiv.org/abs/1706.03762)
 
+- [Retina Net (Aug 2017)](https://arxiv.org/abs/1708.02002)
+
 - [BERT (Oct 2018)](https://arxiv.org/abs/1810.04805)
+
+- [FCOS (Apr 2019)](https://arxiv.org/abs/1904.01355)
 
 - [RoBERTa (Jul 2019)](https://arxiv.org/abs/1907.11692)
 
