@@ -74,7 +74,6 @@
 ### University Courses
 - Artificial Intelligence: Principles and Techniques [(2022)](https://stanford-cs221.github.io/spring2022/)
 
-
 ## Computer Vision
 ### University Courses
 - [EECS 498 Deep Learning for Computer Vision](https://web.eecs.umich.edu/~justincj/teaching/eecs498/WI2022/schedule.html)
