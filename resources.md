@@ -110,6 +110,7 @@
 - [Deep Learning for Art, Aesthetics, and Creativity](https://ali-design.github.io/deepcreativity/)
 - Geometric Deep Learning [(Fall 2021)](https://geometricdeeplearning.com/lectures/)
 - Evolutionary Computation [(Fall 2023)](https://cobweb.cs.uga.edu/~khaled/ECcourse/)
+- Efficient ML [(Fall 2023)](https://hanlab.mit.edu/courses/2023-fall-65940)
 
 ## Mathematics for Machine Learning
 - [Mathematics for Machine Learning (2020)](https://drive.google.com/file/d/1eH1EKU_f5pzaak5k_Xj4Tkxw3rNheCOB/view?usp=drive_link)
