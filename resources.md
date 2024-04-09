@@ -12,6 +12,25 @@
 - Convex Optimization
 - Generalized Linear Models
 
+## Machine Learning
+
+
+
+## Artificial Intelligence
+
+- Artificial Intelligence: Principles and Techniques [(2022)](https://stanford-cs221.github.io/spring2022/)
+
+## Statistical Learning
+### University Courses
+- [CS229: Machine Learning](https://cs229.stanford.edu/)
+- [CS189: Introduction to Machine Learning](https://people.eecs.berkeley.edu/~jrs/189/)
+- Learning from Data by Yaser Abu-Mostafa [(2012)](https://work.caltech.edu/lectures.html#lectures)
+- Machine Learning by Nando de Freitas [(2014)](https://www.cs.ox.ac.uk/people/nando.defreitas/machinelearning/)
+- Machine Learning for Intelligent Systems [(Fall 2018)](http://www.cs.cornell.edu/courses/cs4780/2018fa/)
+- Machine Learning with Graphs [(Fall 2021)](http://web.stanford.edu/class/cs224w/)
+### Miscellaneous
+- [A Few Useful Things to Know About Machine Learning (Oct 2012)](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf)
+
 ## Deep Learning
 ### University Courses
 - [Neural Networks (CS342)](https://www.philkr.net/cs342/)
@@ -32,6 +51,7 @@
 - [The Unreasonable Effectiveness of Recurrent Neural Networks](https://karpathy.github.io/2015/05/21/rnn-effectiveness/)
 - [Object Detection as a Machine Learning Problem](https://www.youtube.com/watch?v=her4_rzx09o)
 
+
 ## Statistical Learning
 ### University Courses
 - [CS229: Machine Learning](https://cs229.stanford.edu/)
@@ -49,10 +69,10 @@
 - [Recognizing and Learning Object Categories (2005)](https://people.csail.mit.edu/torralba/shortCourseRLOC/index.html)
 - [A Few Useful Things to Know About Machine Learning (Oct 2012)](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf)
 
+
 ## Artificial Intelligence
 ### University Courses
 - Artificial Intelligence: Principles and Techniques [(2022)](https://stanford-cs221.github.io/spring2022/)
-
 
 
 ## Computer Vision
@@ -62,6 +82,7 @@
 ### Miscellaneous
 - [First Principles of Computer Vision](https://www.youtube.com/@firstprinciplesofcomputerv3258/playlists)
 - [Reddit Post](https://www.reddit.com/r/computervision/comments/12m570l/recommended_computer_vision_courses_certifications/)
+- [Recognizing and Learning Object Categories (2005)](https://people.csail.mit.edu/torralba/shortCourseRLOC/index.html)
 
 ## Speech and Language Processing
 ### University Courses
@@ -94,3 +115,7 @@
 - [Mathematics for Machine Learning (2020)](https://drive.google.com/file/d/1eH1EKU_f5pzaak5k_Xj4Tkxw3rNheCOB/view?usp=drive_link)
 - [Gaussian Processes for Machine Learning (2006) ](https://drive.google.com/file/d/1mGEb05gAzf-YBL0S0CS9pgv2oO1f4Xqx/view?usp=drive_link)
 - [Convex Optimization by Boyd and Vadanberghe (2009)](https://drive.google.com/file/d/1YHsMwvyLHtv7eAetgOfugqwgXkdnGKBd/view?usp=drive_link)
+
+### MLOps
+- [Building Machine Learning Pipelines (2020)](https://drive.google.com/file/d/145Bv4tM1mrnJ4x8aA4UrXE00Nsnv7r_w/view?usp=drive_link)
+- [Designing Machine Learning Systems (2022)](https://drive.google.com/file/d/1vHwQdQeqLPOd5by29iB8Y8ybq7pWCT44/view?usp=drive_link)

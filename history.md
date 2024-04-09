@@ -18,14 +18,19 @@
 ## 1980 - 1987
 - [Neocognitron / CNN (1980)](https://www.rctn.org/bruno/public/papers/Fukushima1980.pdf)
 
+- [Nesterov Momentum (1983)](https://www.mathnet.ru/links/5589508244017e6d3f76bb7e3feb96c1/dan46009.pdf)
+
 ## 1987 - 1993 (Second AI Winter)
 - [Backpropagation Applied to Handwritten Zip Code Recognition (1989)](https://github.com/Yorko/deep_learning_python_intro/blob/master/papers/LeCun%20backpropagation%20applied%20to%20handwritten%20zip%20code%20recognition.pdf)
 
 ## 1993 - 2000
+- [Rprop (1993)](https://ieeexplore.ieee.org/document/298623)
+
 - [RNN Training Difficulties (1994)](https://www.iro.umontreal.ca/~lisa/pointeurs/ieeetrnn94.pdf)
 
 - [LSTM (1997)](https://www.bioinf.jku.at/publications/older/2604.pdf)
 
+- [Momentum (1998)](https://epubs.siam.org/doi/10.1137/S1052623495294797)
 
 ## Resources
 - [Deep Learning in Neural Networks: An Overview](https://arxiv.org/abs/1404.7828)

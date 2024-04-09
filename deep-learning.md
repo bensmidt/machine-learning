@@ -57,11 +57,15 @@
 
 - [YOLO (Jun 2015)](https://arxiv.org/abs/1506.02640)
 
-- [Show, Attend and Tell: Neural Image Caption Generation with Visual Attention (Deb 2015)](https://arxiv.org/abs/1502.03044)
+- [Show, Attend and Tell: Neural Image Caption Generation with Visual Attention (Dec 2015)](https://arxiv.org/abs/1502.03044)
+
+- [SSD: Single Shot MultiBox Detector (Dec 2015)](https://arxiv.org/abs/1512.02325)
 
 - [ResNet (Dec 2015)](https://arxiv.org/abs/1512.03385)
 
 - [ResNeXt (Nov 2016)](https://arxiv.org/abs/1611.05431)
+
+- [MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications (Apr 2017)](https://arxiv.org/abs/1704.04861)
 
 ## 2017 - Present (Transformer Era)
 
@@ -69,11 +73,17 @@
 
 - [Retina Net (Aug 2017)](https://arxiv.org/abs/1708.02002)
 
+- [MobileNetV2: Inverted Residuals and Linear Bottlenecks (Jan 2018)](https://arxiv.org/abs/1801.04381)
+
 - [BERT (Oct 2018)](https://arxiv.org/abs/1810.04805)
 
 - [FCOS (Apr 2019)](https://arxiv.org/abs/1904.01355)
 
+- [EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks (May 2019)](https://arxiv.org/abs/1905.11946)
+
 - [RoBERTa (Jul 2019)](https://arxiv.org/abs/1907.11692)
+
+- [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (Oct 2020)](https://arxiv.org/abs/2010.11929)
 
 
 ## References
